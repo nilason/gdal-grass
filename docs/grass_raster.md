@@ -13,18 +13,18 @@ GRASS raster maps/imagery groups can be selected in several ways.
     following example opens the raster map "elevation" within the GRASS
     mapset "PERMANENT" of the GRASS location "myloc" in the GRASS
     database located at `/data/grassdb`.
-    
+
     For example:
-    
+
         gdalinfo /data/grassdb/myloc/PERMANENT/cellhd/elevation
 
 2.  The full path to the directory containing information about an
     imagery group (or the REF file within it) can be specified to refer
     to the whole group as a single dataset. The following examples do
     the same thing.
-    
+
     For example:
-    
+
         gdalinfo /data/grassdb/imagery/raw/group/testmff/REF
         gdalinfo /data/grassdb/imagery/raw/group/testmff
 

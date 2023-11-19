@@ -41,4 +41,3 @@ $(OLIBNAME):	ogrgrassdriver.o ogrgrassdatasource.o ogrgrasslayer.o
 
 %.o:	%.cpp
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
-

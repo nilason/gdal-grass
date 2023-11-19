@@ -20,4 +20,3 @@ jobs:
         run: .github/workflows/build_ubuntu.sh $HOME/gdalplugins
       - name: Test executing of GDAL with driver on GRASS maps
         run: .github/workflows/test_simple.sh $HOME/gdalplugins
-

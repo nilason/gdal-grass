@@ -187,6 +187,3 @@ rm -f conftest*
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
-
-
-
