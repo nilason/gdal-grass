@@ -26,12 +26,12 @@
  * DEALINGS IN THE SOFTWARE.
  ****************************************************************************/
 
-#include "ogrgrass.h"
 #include "cpl_conv.h"
 #include "cpl_string.h"
+#include "ogrgrass.h"
 
 extern "C" {
-    void RegisterOGRGRASS();
+void RegisterOGRGRASS();
 }
 
 CPL_CVSID("$Id$")
@@ -39,62 +39,48 @@ CPL_CVSID("$Id$")
 /************************************************************************/
 /*                          ~OGRGRASSDriver()                           */
 /************************************************************************/
-OGRGRASSDriver::~OGRGRASSDriver()
-{
-}
+OGRGRASSDriver::~OGRGRASSDriver() {}
 
 /************************************************************************/
 /*                              GetName()                               */
 /************************************************************************/
-const char *OGRGRASSDriver::GetName()
-{
-    return "OGR_GRASS";
-}
+const char *OGRGRASSDriver::GetName() { return "OGR_GRASS"; }
 
 /************************************************************************/
 /*                                Open()                                */
 /************************************************************************/
-OGRDataSource *OGRGRASSDriver::Open( const char * pszFilename,
-                                     int bUpdate )
-{
-    OGRGRASSDataSource  *poDS = new OGRGRASSDataSource();
+OGRDataSource *OGRGRASSDriver::Open(const char *pszFilename, int bUpdate) {
+  OGRGRASSDataSource *poDS = new OGRGRASSDataSource();
 
-    if( !poDS->Open( pszFilename, bUpdate, TRUE ) )
-    {
-        delete poDS;
-        return NULL;
-    }
-    else
-    {
-        return poDS;
-    }
+  if (!poDS->Open(pszFilename, bUpdate, TRUE)) {
+    delete poDS;
+    return NULL;
+  } else {
+    return poDS;
+  }
 }
 
 /************************************************************************/
 /*                           TestCapability()                           */
 /************************************************************************/
-int OGRGRASSDriver::TestCapability( const char * /*pszCap*/ )
-{
-    return FALSE;
-}
+int OGRGRASSDriver::TestCapability(const char * /*pszCap*/) { return FALSE; }
 
 /************************************************************************/
 /*                          RegisterOGRGRASS()                          */
 /************************************************************************/
-void RegisterOGRGRASS()
-{
-    if (! GDAL_CHECK_VERSION("OGR/GRASS driver"))
-        return;
+void RegisterOGRGRASS() {
+  if (!GDAL_CHECK_VERSION("OGR/GRASS driver"))
+    return;
 
-    if( GDALGetDriverByName( "OGR_GRASS" ) != NULL )
-        return;
+  if (GDALGetDriverByName("OGR_GRASS") != NULL)
+    return;
 
-    OGRGRASSDriver *poDriver = new OGRGRASSDriver();
+  OGRGRASSDriver *poDriver = new OGRGRASSDriver();
 
-    poDriver->SetDescription( "GRASS" );
-    poDriver->SetMetadataItem( GDAL_DCAP_VECTOR, "YES" );
-    poDriver->SetMetadataItem( GDAL_DMD_LONGNAME, "GRASS Vectors (5.7+)" );
-    poDriver->SetMetadataItem( GDAL_DMD_HELPTOPIC, "drivers/vector/grass.html" );
+  poDriver->SetDescription("GRASS");
+  poDriver->SetMetadataItem(GDAL_DCAP_VECTOR, "YES");
+  poDriver->SetMetadataItem(GDAL_DMD_LONGNAME, "GRASS Vectors (5.7+)");
+  poDriver->SetMetadataItem(GDAL_DMD_HELPTOPIC, "drivers/vector/grass.html");
 
-    OGRSFDriverRegistrar::GetRegistrar()->RegisterDriver( poDriver );
+  OGRSFDriverRegistrar::GetRegistrar()->RegisterDriver(poDriver);
 }
